@@ -1,0 +1,27 @@
+// LeetCode: 392
+// Problem name: Is Subsequence
+// https://leetcode.com/problems/is-subsequence/
+// Category: Arrays, Two Pointer
+// Approach: 
+// - Use two pointers: 'i' for string s, 'j' for string t.
+// - Traverse both strings: if characters match, move pointer 'i'.
+// - Always move pointer 'j' (for string t).
+// - If 'i' reaches the end of s, then s is a subsequence of t.
+// - Return true if all characters of s are found in order in t.
+
+Solution
+--
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int i=0;
+        int j=0;
+        while(i<s.length() && j<t.length()){
+            if(s.charAt(i)==t.charAt(j)){
+                i++;
+            }
+            j++;
+        }
+        return i==s.length();
+    }
+}
+--
