@@ -1,0 +1,30 @@
+// LeetCode: 66
+// Problem name: Plus One
+// https://leetcode.com/problems/plus-one/
+// Category: Array,Math
+// Approach:
+// - Traverse the digits array from the end.
+// - If the digit is 9, set it to 0 (carry over).
+// - If the digit is less than 9, increment it and return the array.
+// - If all digits are 9, create a new array of length +1 with first digit as 1.
+// - Return the new array (e.g., 999 + 1 = 1000).
+
+Solution
+--
+class Solution {
+    public int[] plusOne(int[] digits) {
+       for(int i=digits.length-1;i>=0;i--){
+        if(digits[i]==9){
+            digits[i]=0;
+        }
+        else{
+            digits[i]++;
+            return digits;
+        }
+       } 
+       int[] digitsNew=new int[digits.length+1];
+       digitsNew[0]=1;
+       return digitsNew;
+    }
+}
+--
