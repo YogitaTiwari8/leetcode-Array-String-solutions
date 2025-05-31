@@ -1,0 +1,35 @@
+// LeetCode: 11
+// Problem name: Container With Most Water
+// https://leetcode.com/problems/container-with-most-water/
+// Category: Arrays, Two Pointer
+// Approach: 
+// - Use two pointers: 'i' at start and 'j' at end of the array.
+// - Calculate area = min(height[i], height[j]) * (j - i).
+// - Update max area if current area is larger.
+// - Move the pointer pointing to the shorter line inward,
+//   since only that can potentially increase the area.
+// - Continue until pointers meet.
+
+Solution
+--
+class Solution {
+    public int maxArea(int[] height) {
+        int i=0;
+        int j=(height.length)-1;
+        int maxWater=0;
+        while(i<=j){
+            int minheight=Math.min(height[i],height[j]);
+            int width=j-i;
+            int area=minheight*width;
+            maxWater=Math.max(area,maxWater);
+            if(height[i]<height[j]){
+                i=i+1;
+            }
+            else{
+                j=j-1;
+            }
+        }
+        return maxWater;
+    }
+}
+--
