@@ -1,0 +1,32 @@
+// LeetCode: 26
+// Problem name: Remove Duplicate from Sorted Array
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+// Category: Arrays, Two Pointer
+// Approach: 
+// - Use two pointers: 'writer' (for placing unique elements) and 'reader' (for scanning).
+// - Start 'writer' at index 0 and 'reader' at index 1.
+// - If current reader element is different from writer, move writer forward and copy element.
+// - Continue until reader reaches the end.
+// - Return writer + 1 as the new length of array with unique elements at the beginning.
+
+Solution
+--
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int writer=0;
+        int reader=1;
+        while(reader<nums.length){
+            if(nums[writer]!=nums[reader]){
+                writer=writer+1;
+                nums[writer]=nums[reader];
+                reader=reader+1;
+
+            }
+            else{
+                reader=reader+1;
+            }
+        }
+        return writer+1;
+    }
+}
+--
