@@ -1,0 +1,25 @@
+// LeetCode: 389
+// Problem name: Find the Difference
+// https://leetcode.com/problems/find-the-difference/
+// Category: Arrays, Bitwise Manipulation
+// Approach: 
+// - Initialize a variable 'result' with 0.
+// - XOR all characters from string s and string t.
+// - Since every character in s appears in t except one extra,
+//   XOR cancels matching pairs and leaves the extra character.
+// - Return the result as the extra character.
+
+Solution
+--
+class Solution {
+    public char findTheDifference(String s, String t) {
+        char result=0;
+        for(int i:s.toCharArray()){
+            result^=i;
+        }
+        for(int i:t.toCharArray()){
+            result^=i;
+        }
+        return result;
+    }
+}--
