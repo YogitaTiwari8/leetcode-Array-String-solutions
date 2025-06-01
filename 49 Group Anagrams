@@ -1,0 +1,29 @@
+// LeetCode: 49
+// Problem name: Group Anagrams
+// https://leetcode.com/problems/group-anagrams/
+// Category: HashMap, String, Sorting
+// Approach:
+// - Traverse the input array of strings.
+// - For each word, convert it to a char array and sort it.
+// - Use the sorted string as a key in a HashMap.
+// - Add the original word to the list corresponding to that key.
+// - At the end, return all the values of the map as grouped anagrams.
+
+Solution
+--
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>> map=new HashMap<>();
+        for(String word:strs){
+            char ch[]=word.toCharArray();
+            Arrays.sort(ch);
+            String str=new String(ch);
+            if(!map.containsKey(str)){
+                map.put(str,new ArrayList<String>());
+            }
+            map.get(str).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+--
