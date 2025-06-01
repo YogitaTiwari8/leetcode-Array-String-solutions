@@ -1,0 +1,38 @@
+// LeetCode: 205
+// Problem name: Isomorphic Strings
+// https://leetcode.com/problems/isomorphic-strings/
+// Category: HashMap, String
+// Approach:
+// - Create two HashMaps: one for s → t and one for t → s.
+// - For each character at the same index in both strings:
+//     → Check if the character mapping already exists and is consistent.
+//     → If inconsistent mapping found, return false.
+// - If all characters map consistently in both directions, return true.
+
+Solution
+--
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character,Character> StoT=new HashMap<>();
+        Map<Character,Character> TtoS=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char chS=s.charAt(i);
+            char chT=t.charAt(i);
+            if(s.length()!=t.length()) return false;
+
+            if(StoT.containsKey(chS)){
+                if(StoT.get(chS) != chT) return false;
+            }else{
+                StoT.put(chS,chT);
+            }
+
+            if(TtoS.containsKey(chT)){
+                if(TtoS.get(chT)!=chS) return false;
+            }else{
+                TtoS.put(chT,chS);
+            }
+        }
+        return true;
+    }
+}
+--
