@@ -1,0 +1,34 @@
+// LeetCode: 229
+// Problem name: Majority Element II
+// https://leetcode.com/problems/majority-element-ii/
+// Category: Array, HashMap
+// Approach:
+// - Create a HashMap to store frequency of each element.
+// - Traverse the array and count frequencies.
+// - After that, check for elements whose count > n/3.
+// - Return all such elements as a list.
+
+Solution
+--
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int n=nums.length/3;
+        Map<Integer,Integer> map=new HashMap<>();
+        List<Integer> list=new ArrayList<>();
+        for(int i:nums){
+            if(!map.containsKey(i)){
+                map.put(i,1);
+            }
+            else{
+                map.put(i,map.get(i)+1);
+            }    
+        }
+        for(int i:map.keySet()){
+            if(map.get(i)>n){
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}
+--
