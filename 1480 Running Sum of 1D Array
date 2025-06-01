@@ -1,0 +1,30 @@
+// LeetCode: 1480
+// Problem name: Running Sum of 1d Array
+// https://leetcode.com/problems/running-sum-of-1d-array/
+// Category: Two Pointers, Arrays
+// Approach:
+// - Create a result array of same length as input.
+// - Set the first value of result same as input.
+// - For each next index, add current input element to previous result value.
+// - This forms a running sum array.
+
+Solution
+--
+class Solution {
+    public int[] runningSum(int[] nums) {
+        int arr[]=new int[nums.length];
+        int j=-1;
+        for(int i=0;i<nums.length;i++){
+            if(i==0&&j==-1){
+                j++;
+                arr[j]=nums[i];
+            }
+            else{
+                arr[j+1]=arr[j]+nums[i];
+                j++;
+            }
+        }
+        return arr;
+    }
+}
+--
