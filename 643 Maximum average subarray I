@@ -1,0 +1,31 @@
+// LeetCode: 643
+// Problem name: Maximum average Subarray I
+// https://leetcode.com/problems/maximum-average-subarray-i/
+// Category: Sliding Window, Array
+// Approach: 
+// - Use sliding window of size 'k' to find the maximum sum of any contiguous subarray of length k.
+// - Initialize sum with the first k elements.
+// - Slide the window one element at a time: subtract the outgoing element and add the incoming one.
+// - Track the maximum sum during the process and finally return max/k as the average.
+
+Solution
+--
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        int sum=0;
+        //starting K values sum
+        for(int i=0;i<k;i++){
+            sum+=nums[i];
+        }
+
+        int max=sum;
+        //starting from k because before values sum is in sum
+        for(int i=k;i<nums.length;i++){
+            // adding current value and removing sliding value
+            sum+=nums[i]-nums[i-k];
+            max=Math.max(sum,max);
+        }
+        return (double)max/k;
+    }
+}
+--
