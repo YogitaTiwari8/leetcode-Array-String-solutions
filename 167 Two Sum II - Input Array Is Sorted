@@ -1,0 +1,33 @@
+// LeetCode: 167
+// Problem name: Two Sum II - Input Array Is Sorted
+// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+// Category: Array, Two Pointers
+// Approach:
+// - Two-pointer method on sorted array.
+// - If sum of numbers at i and j equals target, return 1-based indices.
+// - If sum is too big, move right pointer left.
+// - If sum is too small, move left pointer right.
+
+Solution
+--
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int i = 0;
+        int j = numbers.length - 1;
+
+        while (i < j) {
+            int sum = numbers[i] + numbers[j];
+
+            if (sum == target) {
+                return new int[]{i + 1, j + 1}; // 1-based indexing
+            } else if (sum > target) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+
+        return new int[]{-1, -1}; // fallback (though problem states one valid solution always exists)
+    }
+}
+--
