@@ -1,0 +1,48 @@
+// LeetCode: 1
+// Problem name: Two Sum
+// https://leetcode.com/problems/two-sum/
+// Category: Array, Two Pointers
+// Approach:
+// - Copy original array to preserve indices.
+// - Sort the array and use two-pointer technique to find two numbers whose sum is target.
+// - Then find their original indices from the unsorted copy.
+// - Return the indices.
+
+Solution
+--
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] aux = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(nums);
+
+        int first = -1;
+        int second = -1;
+        int i = 0, j = nums.length - 1;
+
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == target) {
+                first = nums[i];
+                second = nums[j];
+                break;
+            } else if (sum > target) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+
+        int firstIndex = -1;
+        int secondIndex = -1;
+        for (i = 0; i < aux.length; i++) {
+            if (firstIndex == -1 && aux[i] == first) {
+                firstIndex = i;
+            } else if (secondIndex == -1 && aux[i] == second) {
+                secondIndex = i;
+            }
+        }
+
+        return new int[]{firstIndex, secondIndex};
+    }
+}
+--
