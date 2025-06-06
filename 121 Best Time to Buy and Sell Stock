@@ -1,0 +1,30 @@
+// LeetCode: 121
+// Problem name: Best Time to Buy and Sell Stock
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// Category: Array, Greedy
+// Approach:
+// - Initialize min price as the first day's price.
+// - Traverse from the second day.
+// - If current price is higher than min, calculate profit.
+// - Update max profit if needed.
+// - Also update min price if current price is lower.
+
+Solution 
+--
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int j = 1; j < prices.length; j++) {
+            if (prices[j] > minPrice) {
+                int profit = prices[j] - minPrice;
+                maxProfit = Math.max(profit, maxProfit);
+            }
+            minPrice = Math.min(prices[j], minPrice);
+        }
+
+        return maxProfit;
+    }
+}
+--
