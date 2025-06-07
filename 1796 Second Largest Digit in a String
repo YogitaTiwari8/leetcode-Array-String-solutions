@@ -1,0 +1,46 @@
+// LeetCode: 1796
+// Problem name: Second Largest Digit in a String
+// https://leetcode.com/problems/second-largest-digit-in-a-string/
+// Approach:
+// - Use helper function isnum() to check if character is digit
+// - Extract unique digits using HashSet
+// - Traverse set to find first and second max values
+
+Solution
+--
+class Solution {
+    boolean isnum(char ch){
+        return "0123456789".indexOf(ch) >= 0;
+    }
+
+    Set<Integer> getNums(char[] ch){
+        Set<Integer> nums = new HashSet<>();
+        for(char c : ch){
+            if(isnum(c)){
+                nums.add(Character.getNumericValue(c));
+            }
+        }
+        return nums;
+    }
+
+    public int secondHighest(String s) {
+        char[] ch = s.toCharArray();
+        Set<Integer> nums = getNums(ch); 
+        
+        int first = -1;
+        int second = -1;
+        
+        for(int i : nums){
+            if(i > first){
+                second = first;
+                first = i;
+            }
+            else if(i > second && i != first){
+                second = i;
+            }
+        }
+        
+        return second;
+    }
+}
+--
