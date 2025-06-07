@@ -1,0 +1,29 @@
+// LeetCode: 283
+// Problem name: Move Zeroes
+// https://leetcode.com/problems/move-zeroes/
+// Category: Array, Two Pointers
+// Approach:
+// - Traverse the array and copy non-zero elements to the front using a writer index.
+// - After placing all non-zero elements, fill the remaining part of the array with zeros.
+
+Solution
+--
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int writer = 0;
+
+        // First pass: copy all non-zero elements to the front
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[writer] = nums[i];
+                writer++;
+            }
+        }
+
+        // Second pass: fill the rest of the array with zeros
+        for (int i = writer; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+}
+--
