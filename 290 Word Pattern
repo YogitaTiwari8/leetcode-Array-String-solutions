@@ -1,0 +1,46 @@
+// LeetCode: 290
+// Problem name: Word Pattern
+// https://leetcode.com/problems/word-pattern/
+// Category: HashMap, String
+// Approach:
+// - Split string into words
+// - Check one-to-one mapping between pattern characters and words
+// - Use two HashMaps for bidirectional mapping
+
+Solution
+--
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] str=s.split(" ");
+        if(pattern.length()!=str.length) return false;
+        Map<Character,String> map1=new HashMap<>();
+        Map<String,Character> map2=new HashMap<>();
+
+        for(int i=0;i<pattern.length();i++){
+            Character ch=pattern.charAt(i);
+            String word=str[i];
+
+            if(map1.containsKey(ch)){
+                String w=map1.get(ch);
+                if(!w.equals(word)){
+                    return false;
+                }
+            }
+            else{
+                map1.put(ch,word);
+            }
+
+            if(map2.containsKey(word)){
+                Character c=map2.get(word);
+                if(c!=ch){
+                    return false;
+                }
+            }
+            else{
+                map2.put(word,ch);
+            }
+        }
+        return true;
+    }
+}
+--
