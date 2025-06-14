@@ -1,0 +1,35 @@
+// LeetCode: 56
+// Problem name: Merge Intervals
+// Problem Link: https://leetcode.com/problems/merge-intervals/
+// Approach:
+// - Sort intervals based on the start time
+// - Initialize a result list to store merged intervals
+// - Traverse the sorted intervals:
+//   - If the current interval does not overlap with the last one in the result, add it directly
+//   - Otherwise, merge it with the last interval by updating the end time
+
+Solution
+--
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        // Sort intervals based on the start time
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<int[]> result = new ArrayList<>();
+
+        for (int[] interval : intervals) {
+            // If result is empty or no overlap with last interval, add it
+            if (result.size() == 0 || result.get(result.size() - 1)[1] < interval[0]) {
+                result.add(interval);
+            } else {
+                // Overlapping interval: merge by updating end time
+                result.get(result.size() - 1)[1] = 
+                    Math.max(result.get(result.size() - 1)[1], interval[1]);
+            }
+        }
+
+        // Convert list to 2D array and return
+        return result.toArray(new int[result.size()][]);
+    }
+}
+--
