@@ -1,0 +1,22 @@
+// LeetCode: 1572
+// Problem name: Matrix Diagonal Sum
+// Problem Link: https://leetcode.com/problems/matrix-diagonal-sum/
+// Approaches:
+//  - Traverse only once, add primary and secondary diagonals.
+//  - Avoid double-counting the center element in odd-sized matrix.
+
+Solution 
+--
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        int sum = 0;
+        for (int i = 0; i < mat.length; i++) {
+            sum += mat[i][i]; // Primary diagonal
+            if (i != mat.length - 1 - i) { // to avoid double counting of [i][i] again
+                sum += mat[i][mat.length - 1 - i]; // Secondary diagonal
+            }
+        }
+        return sum;
+    }
+}
+--
