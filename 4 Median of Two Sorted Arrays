@@ -1,0 +1,34 @@
+// LeetCode: 4
+// Problem name: Median of Two Sorted Arrays
+// Problem Link: https://leetcode.com/problems/median-of-two-sorted-arrays/
+// Approach:
+// - Merge both arrays into one
+// - Sort the merged array
+// - Return the middle element (or average of two middle elements if total length is even)
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        
+        // Step 1: Merge both arrays
+        int[] merged = new int[m + n];
+        for (int i = 0; i < m; i++) {
+            merged[i] = nums1[i];
+        }
+        for (int i = 0; i < n; i++) {
+            merged[m + i] = nums2[i];
+        }
+
+        // Step 2: Sort the merged array
+        Arrays.sort(merged);
+
+        // Step 3: Find median
+        int mid = merged.length / 2;
+        if ((m + n) % 2 == 0) {
+            return (merged[mid - 1] + merged[mid]) / 2.0;
+        } else {
+            return merged[mid];
+        }
+    }
+}
