@@ -1,0 +1,36 @@
+// LeetCode: 73
+// Problem name: Set Matrix Zeroes
+// Problem Link: https://leetcode.com/problems/set-matrix-zeroes/
+// Approach:
+// - First pass: Use HashSet to record all row and column indices that contain a 0.
+// - Second pass: Iterate through the matrix again and set the entire row/column to 0 if it is in the set.
+
+Solution 
+--
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int n = matrix.length;
+        Set<Integer> row = new HashSet<>();
+        Set<Integer> col = new HashSet<>();
+
+        // Step 1: Record rows and columns that need to be zeroed
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 0) {
+                    row.add(i);
+                    col.add(j);
+                }
+            }
+        }
+
+        // Step 2: Set rows and columns to zero
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (row.contains(i) || col.contains(j)) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+--
