@@ -1,0 +1,35 @@
+// LeetCode: 162
+// Problem name: Find Peak Element
+// Problem Link: https://leetcode.com/problems/find-peak-element/
+// Approach:
+// - Use Binary Search to find a peak in O(log n) time.
+// - If middle element is greater than next, move left (peak is on the left side)
+// - Otherwise, move right
+// - Eventually, low and high converge at the peak index
+
+Solution
+--
+class Solution {
+    public int findPeakElement(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low < high) {
+            int mid = (low + high) / 2;
+
+            // If the mid element is greater than its next element,
+            // then the peak must be on the left side (including mid)
+            if (nums[mid] > nums[mid + 1]) {
+                high = mid;
+            } else {
+                // Else, the peak is on the right side
+                low = mid + 1;
+            }
+        }
+
+        // low and high will converge to the peak element
+        return low;
+    }
+}
+
+--
