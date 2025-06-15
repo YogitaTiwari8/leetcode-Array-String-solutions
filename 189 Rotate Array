@@ -1,0 +1,38 @@
+// LeetCode: 189
+// Problem name: Rotate Array
+// Problem Link: https://leetcode.com/problems/rotate-array/
+// Approach:
+// - To rotate the array to the right by k steps:
+//   1. Reverse the entire array
+//   2. Reverse the first k elements
+//   3. Reverse the remaining elements
+
+Solution
+--
+class Solution {
+    // function to reverse a portion of the array
+    void reverse(int[] nums, int start, int end) {
+        while (start <= end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public void rotate(int[] nums, int k) {
+        k = k % nums.length; // To handle cases where k > nums.length
+
+        // Reverse the entire array
+        reverse(nums, 0, nums.length - 1);
+
+        // Reverse the first k elements
+        reverse(nums, 0, k - 1);
+
+        // Reverse the remaining n - k elements
+        reverse(nums, k, nums.length - 1);
+    }
+}
+
+--
