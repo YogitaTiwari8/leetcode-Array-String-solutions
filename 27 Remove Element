@@ -1,0 +1,25 @@
+// LeetCode: 27
+// Problem name: Remove Element
+// Problem Link: https://leetcode.com/problems/remove-element/
+// Approach:
+// - Use the two-pointer technique:
+// - reader scans every element.
+// - writer only writes elements that are not equal to val.
+// - This modifies the array in-place.
+// - Return the number of elements not equal to val
+
+Solution
+--
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int writer=0;
+        for(int reader=0;reader<nums.length;reader++){
+            if(nums[reader]!=val){
+                nums[writer]=nums[reader];
+                writer++;
+            }
+        }
+        return writer;
+    }
+}
+--
