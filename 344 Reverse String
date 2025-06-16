@@ -1,0 +1,21 @@
+// LeetCode: 344
+// Problem name: Reverse String
+// Problem Link: https://leetcode.com/problems/reverse-string/
+// Approach:
+// - Use two-pointer technique: start from both ends and swap characters.
+
+Solution
+--
+class Solution {
+    public void reverseString(char[] s) {
+        int left = 0, right = s.length - 1;
+        while (left < right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+--
