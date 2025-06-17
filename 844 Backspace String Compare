@@ -1,0 +1,49 @@
+// LeetCode: 844
+// Problem name: Backspace String Compare
+// https://leetcode.com/problems/backspace-string-compare/
+// Approach:
+// - Use two lists to simulate typing with backspace for both strings
+// - Remove last character on '#' if list is not empty
+// - Compare both lists character by character
+
+Solution
+--
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        List<Character> lists = new ArrayList<>();
+        List<Character> listt = new ArrayList<>();
+
+        // Process string s
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '#' && lists.size() > 0) {
+                lists.remove(lists.size() - 1);
+            } else if (s.charAt(i) != '#') {
+                lists.add(s.charAt(i));
+            }
+        }
+
+        // Process string t
+        for (int i = 0; i < t.length(); i++) {
+            if (t.charAt(i) == '#' && listt.size() > 0) {
+                listt.remove(listt.size() - 1);
+            } else if (t.charAt(i) != '#') {
+                listt.add(t.charAt(i));
+            }
+        }
+
+        // If sizes don't match, strings are not equal
+        if (lists.size() != listt.size()) {
+            return false;
+        }
+
+        // Compare character by character
+        for (int i = 0; i < lists.size(); i++) {
+            if (!lists.get(i).equals(listt.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+--
