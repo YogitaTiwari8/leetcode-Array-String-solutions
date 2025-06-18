@@ -1,0 +1,25 @@
+// LeetCode: 217
+// Problem name: Contains Duplicate
+// https://leetcode.com/problems/contains-duplicate/
+// Approach:
+// - Use a HashSet to track seen elements
+// - If a number is already in the set, return true
+// - If loop finishes, return false (no duplicates found)
+
+Solution
+--
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> visited = new HashSet<>();
+        
+        for (int n : nums) {
+            if (visited.contains(n)) {
+                return true;
+            }
+            visited.add(n);
+        }
+        
+        return false;
+    }
+}
+--
