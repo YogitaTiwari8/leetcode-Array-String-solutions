@@ -7,7 +7,7 @@
 // - For every cell at (i, j) in the original matrix, assign its value to (j, i) in the new matrix.
 // - Return the new transposed matrix.
 
-solution
+Solution
 --
 class Solution {
     public int[][] transpose(int[][] matrix) {
