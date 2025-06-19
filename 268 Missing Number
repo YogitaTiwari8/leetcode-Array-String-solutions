@@ -1,0 +1,40 @@
+// LeetCode: 268
+// Problem name: Missing Number
+// https://leetcode.com/problems/missing-number/
+// Approach:
+// - The sum of first n natural numbers is: n*(n+1)/2
+// - Subtract each element of array from this sum
+// - The remaining value will be the missing number
+
+Solution
+--
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int sum = n * (n + 1) / 2;
+        for (int i : nums) {
+            sum -= i;
+        }
+        return sum;
+    }
+
+    // Alternate Approach 1:
+    // - Use HashMap to mark presence of all numbers
+    // - Return the number which is not marked true
+    public int missingNumberA1(int[] nums) {
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (int i = 0; i <= nums.length; i++) {
+            map.put(i, false);
+        }
+        for (int n : nums) {
+            map.put(n, true);
+        }
+        for (int n : map.keySet()) {
+            if (!map.get(n)) {
+                return n;
+            }
+        }
+        return -1;
+    }
+}
+--
