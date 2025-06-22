@@ -1,0 +1,33 @@
+// LeetCode: 134
+// Problem name: Gas Station
+// https://leetcode.com/problems/gas-station/
+// Approach:
+// - Traverse the array to track total gas deficit/surplus
+// - If surplus becomes negative at any station, reset surplus and mark next station as new start
+// - If total gas is greater than or equal to total cost, return start; else return -1
+
+Solution
+--
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int start=0;
+        int surplus=0;
+        int deficient=0;
+        for(int i=0;i<gas.length;i++){
+            int difference=gas[i]-cost[i];
+            surplus+=difference;
+            deficient+=difference;
+            if(surplus<0){
+                surplus=0;
+                start=i+1;
+            }
+        }
+        if(deficient>=0){
+            return start;
+        }
+        else{
+            return -1;
+        }
+    }
+}
+--
