@@ -1,0 +1,35 @@
+// LeetCode: 152
+// Problem name: Maximum Product Subarray
+// https://leetcode.com/problems/maximum-product-subarray/
+// Approach:
+// - We track both maxPro and minPro at each step because a negative number can flip max <-> min
+// - For every element, calculate max & min product by multiplying with previous max/min
+// - Update overall max from maxPro
+
+Solution
+--
+class Solution {
+    public int maxProduct(int[] nums) {
+        int minPro = nums[0];  // Track min product so far
+        int maxPro = nums[0];  // Track max product so far
+        int currMax = nums[0]; // Final result
+
+        for (int i = 1; i < nums.length; i++) {
+            int tempMax = maxPro;
+            int tempMin = minPro;
+
+            // Current max is max of:
+            // - current number
+            // - product with previous max
+            // - product with previous min (in case of negative number)
+            maxPro = Math.max(nums[i], Math.max(tempMax * nums[i], tempMin * nums[i]));
+            minPro = Math.min(nums[i], Math.min(tempMax * nums[i], tempMin * nums[i]));
+
+            // Update result
+            currMax = Math.max(currMax, maxPro);
+        }
+
+        return currMax;
+    }
+}
+--
