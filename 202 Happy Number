@@ -1,0 +1,39 @@
+// LeetCode: 202
+// Problem name: Happy Number
+// https://leetcode.com/problems/happy-number/
+// Approach:
+// - A number is happy if the sum of squares of its digits (repeatedly) becomes 1
+// - Use a HashSet to track visited numbers to detect cycles
+// - If we revisit a number → cycle detected → not happy
+// - Else, if we reach 1 → it's a happy number
+
+Solution
+--
+class Solution {
+
+    // Helper function to calculate sum of squares of digits
+    static int happy(int num) {
+        int n = 0;
+        while (num != 0) {
+            int rem = num % 10;
+            n += (int) Math.pow(rem, 2);
+            num /= 10;
+        }
+        return n;
+    }
+
+    public boolean isHappy(int n) {
+        HashSet<Integer> visited = new HashSet<>();
+
+        while (n != 1) {
+            if (visited.contains(n)) {
+                return false; // Cycle detected
+            }
+            visited.add(n);
+            n = happy(n); // Transform number to sum of squares of digits
+        }
+
+        return true;
+    }
+}
+--
