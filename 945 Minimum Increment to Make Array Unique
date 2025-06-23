@@ -1,0 +1,27 @@
+// LeetCode: 945
+// Problem name: Minimum Increment to Make Array Unique
+// https://leetcode.com/problems/minimum-increment-to-make-array-unique/
+// Approach:
+// - Sort the array so duplicates are adjacent
+// - If the current element is not greater than the previous, increment it just enough to be unique
+// - Track the total number of increments (moves) required
+
+Solution
+--
+class Solution {
+    public int minIncrementForUnique(int[] nums) {
+        Arrays.sort(nums);  // Sort the array to handle duplicates easily
+        int move = 0;
+
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j - 1] >= nums[j]) {
+                int inc = nums[j - 1] - nums[j] + 1;  // Calculate how much to increment
+                move += inc;
+                nums[j] = nums[j - 1] + 1;  // Make current number unique
+            }
+        }
+
+        return move;
+    }
+}
+--
