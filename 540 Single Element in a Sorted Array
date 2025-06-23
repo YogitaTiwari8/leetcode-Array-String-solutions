@@ -1,0 +1,34 @@
+// LeetCode: 540
+// Probelm name: Single Element in a Sorted Array
+// https://leetcode.com/problems/single-element-in-a-sorted-array/
+// Approach:
+// - Use Binary Search since array is sorted
+// - Pairs of elements appear consecutively: [1,1,2,2,3,3,4]
+// - If mid is even and nums[mid] == nums[mid + 1], unique is on right
+// - If mid is even and nums[mid] != nums[mid + 1], unique is on left (including mid)
+// - Keep adjusting low and high accordingly until low == high (unique element)
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+
+            // Make sure mid is always pointing to the first in a pair
+            if (mid % 2 == 1) {
+                mid--;
+            }
+
+            // If the pair is valid, move right
+            if (nums[mid] == nums[mid + 1]) {
+                low = mid + 2;
+            } else {
+                high = mid;
+            }
+        }
+
+        return nums[low];
+    }
+}
