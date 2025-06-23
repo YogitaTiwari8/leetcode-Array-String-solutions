@@ -8,6 +8,8 @@
 // - If mid is even and nums[mid] != nums[mid + 1], unique is on left (including mid)
 // - Keep adjusting low and high accordingly until low == high (unique element)
 
+Solution
+--
 class Solution {
     public int singleNonDuplicate(int[] nums) {
         int low = 0;
@@ -32,3 +34,4 @@ class Solution {
         return nums[low];
     }
 }
+--
