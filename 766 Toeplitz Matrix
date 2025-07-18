@@ -1,0 +1,36 @@
+/*
+ * LeetCode: 766
+ * Problem: Toeplitz Matrix
+ * Link: https://leetcode.com/problems/toeplitz-matrix/
+ * 
+ * Approach:
+ * - A matrix is Toeplitz if every diagonal from top-left to bottom-right has the same element.
+ * - That means: matrix[i][j] should be equal to matrix[i-1][j-1] for all valid (i, j).
+ * 
+ * Steps:
+ * - Traverse the matrix starting from (1,1) to (m-1,n-1)
+ * - Compare each element with its top-left neighbor.
+ * - If any mismatch is found, return false.
+ * - If the loop completes without mismatch, return true.
+ */
+
+Solution
+--
+class Solution {
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        int m = matrix.length;       // number of rows
+        int n = matrix[0].length;    // number of columns
+
+        // Start from (1,1) and check each element with its top-left neighbor
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] != matrix[i - 1][j - 1]) {
+                    return false;    // if any diagonal has different elements
+                }
+            }
+        }
+
+        return true;  // matrix is Toeplitz if all diagonals match
+    }
+}
+--
