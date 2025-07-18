@@ -1,0 +1,65 @@
+/*
+ * LeetCode: 54
+ * Problem: Spiral Matrix Traversal
+ * Link: https://leetcode.com/problems/spiral-matrix/
+ * 
+ * Approach:
+ * - Maintain four boundaries: top, bottom, left, right.
+ * - Traverse the matrix in spiral order:
+ *     1. Left to Right across the top row.
+ *     2. Top to Bottom along the right column.
+ *     3. Right to Left across the bottom row (if still in bounds).
+ *     4. Bottom to Top along the left column (if still in bounds).
+ * - After each direction, move the corresponding boundary inward.
+ * - Continue the process until all elements are covered.
+ */
+
+Solution
+--
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        int m = matrix.length;        // number of rows
+        int n = matrix[0].length;     // number of columns
+
+        int top = 0;                  // initial top boundary
+        int bottom = m - 1;           // initial bottom boundary
+        int left = 0;                 // initial left boundary
+        int right = n - 1;            // initial right boundary
+
+        while (left <= right && top <= bottom) {
+
+            // 1. Traverse from Left to Right across the top row
+            for (int i = left; i <= right; i++) {
+                list.add(matrix[top][i]);
+            }
+            top++; // move top boundary down
+
+            // 2. Traverse from Top to Bottom down the right column
+            for (int i = top; i <= bottom; i++) {
+                list.add(matrix[i][right]);
+            }
+            right--; // move right boundary left
+
+            // 3. Traverse from Right to Left across the bottom row
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    list.add(matrix[bottom][i]);
+                }
+                bottom--; // move bottom boundary up
+            }
+
+            // 4. Traverse from Bottom to Top up the left column
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    list.add(matrix[i][left]);
+                }
+                left++; // move left boundary right
+            }
+        }
+
+        return list;
+    }
+}
+--
