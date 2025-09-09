@@ -1,0 +1,24 @@
+/ LeetCode: 3498
+// Problem name: Reverse Degree of a String
+// https://leetcode.com/problems/reverse-degree-of-a-string/
+// Category: String, Math
+// Approach:
+// - Iterate through the string from left to right.
+// - For each character, calculate its reverse alphabet position: 26 - (s.charAt(i) - 'a')
+// - 'a' gives 26, 'b' gives 25, ..., 'z' gives 1.
+// - Multiply reverse position with (i+1) [1-based index].
+// - Keep adding to total sum and finally return the answer.
+
+Solution
+--
+class Solution {
+    public int reverseDegree(String s) {
+        int total=0;
+        for(int i=0;i<s.length();i++){
+            int value=26-(s.charAt(i)-'a');
+            total+=(value*(i+1));
+        }
+        return total;
+    }
+}
+--
